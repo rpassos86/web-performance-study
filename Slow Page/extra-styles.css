@@ -1,0 +1,186 @@
+/* Extra Styles - Unnecessary but render-blocking */
+
+/* Additional animations that slow down rendering */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* Unnecessary complex selectors */
+.hero-title, .hero-subtitle, .btn-large {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.loading-text {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Complex gradients that slow rendering */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(16, 185, 129, 0.1) 0%,
+        rgba(5, 150, 105, 0.05) 25%,
+        rgba(16, 185, 129, 0.1) 50%,
+        rgba(5, 150, 105, 0.05) 75%,
+        rgba(16, 185, 129, 0.1) 100%
+    );
+    background-size: 400% 400%;
+    animation: shimmer 3s ease infinite;
+    pointer-events: none;
+}
+
+/* Additional hover effects that consume CPU */
+.feature-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(16, 185, 129, 0.1) 0%,
+        transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+.feature-card:hover::after {
+    opacity: 1;
+}
+
+/* Complex box shadows */
+.testimonial-card {
+    box-shadow: 
+        0 4px 6px -1px rgba(0, 0, 0, 0.3),
+        0 2px 4px -1px rgba(0, 0, 0, 0.2),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+/* Unnecessary backdrop effects */
+.cta::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    pointer-events: none;
+}
+
+/* Additional typography enhancements */
+h1, h2, h3, h4, h5, h6 {
+    font-feature-settings: 'liga' 1, 'kern' 1;
+    font-variant-numeric: oldstyle-nums;
+}
+
+/* Complex text rendering */
+body {
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: 100%;
+}
+
+/* Additional responsive utilities */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Print styles (unnecessary for web app) */
+@media print {
+    .navbar,
+    .cta,
+    .footer {
+        display: none;
+    }
+}
+
+/* High contrast mode support (rarely used) */
+@media (prefers-contrast: high) {
+    :root {
+        --color-text-primary: #FFFFFF;
+        --color-text-secondary: #CCCCCC;
+    }
+}
+
+/* Dark mode support (already dark, but extra) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-background: #030712;
+    }
+}
+
+/* Unnecessary focus styles */
+*:focus {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+}
+
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Selection styles */
+::selection {
+    background-color: var(--color-accent);
+    color: var(--color-primary);
+}
+
+/* Scrollbar customization */
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--color-background);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-secondary);
+    border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent);
+}
+
